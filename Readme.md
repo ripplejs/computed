@@ -1,4 +1,3 @@
-
 # computed
 
   Plugin for model to enable computed properties
@@ -22,7 +21,7 @@ Model.use(computed);
 You create computed properties using static methods. You
 can declare the dependencies explicitly:
 
-```
+```js
 Model.computed('fullname', ['firstname', 'lastname'], function(){
   return this.get('firstname') + ' ' + this.get('lastname');
 });
