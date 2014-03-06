@@ -79,7 +79,7 @@ module.exports = function(Model) {
    */
   Model.prototype.get = function(prop){
     if(tracking) tracking.push(prop);
-    get.apply(this, arguments);
+    return get.apply(this, arguments);
   };
 
 }
