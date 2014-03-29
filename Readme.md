@@ -13,17 +13,17 @@
 
 ```
 var computed = require('computed');
-var model = require('model');
+var ripple = require('ripple');
 
-var Model = model();
-Model.use(computed);
+var View = ripple('<div></div>');
+View.use(computed);
 ```
 
 You create computed properties using static methods. You
 can declare the dependencies explicitly:
 
 ```
-Model.computed('fullname', ['firstname', 'lastname'], function(){
+View.computed('fullname', ['firstname', 'lastname'], function(){
   return this.get('firstname') + ' ' + this.get('lastname');
 });
 ```
@@ -31,7 +31,7 @@ Model.computed('fullname', ['firstname', 'lastname'], function(){
 Or let them be inferred from the `.get` calls:
 
 ```js
-Model.computed('fullname', function(){
+View.computed('fullname', function(){
   return this.get('firstname') + ' ' + this.get('lastname');
 });
 ```
