@@ -1,4 +1,4 @@
-module.exports = function(Model) {
+module.exports = function(View) {
 
   /**
    * Stores dependencies being tracked
@@ -12,7 +12,7 @@ module.exports = function(Model) {
    *
    * @type {Function}
    */
-  var get = Model.prototype.get;
+  var get = View.prototype.get;
 
 
   /**
@@ -44,11 +44,12 @@ module.exports = function(Model) {
    * @param {Array} dependencies
    * @param {Function} fn
    *
-   * @return {Model}
+   * @return {View}
    */
-  Model.computed = function(name, dependencies, fn) {
+  View.computed = function(name, dependencies, fn) {
     var args = arguments;
-    Model.on('construct', function(self){
+    View.created(function(){
+      var self = this;
       if(args.length === 2) {
         fn = args[1];
         dependencies = track();
@@ -64,7 +65,7 @@ module.exports = function(Model) {
           self.set(name, fn.apply(self, values));
         };
       }
-      self.change(dependencies, update);
+      self.watch(dependencies, update);
       update();
     });
     return this;
@@ -77,7 +78,7 @@ module.exports = function(Model) {
    *
    * @param {String} prop
    */
-  Model.prototype.get = function(prop){
+  View.prototype.get = function(prop){
     if(tracking) tracking.push(prop);
     return get.apply(this, arguments);
   };

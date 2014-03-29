@@ -10,7 +10,7 @@
   },
   "development": {
     "component/assert": "*",
-    "ripplejs/model": "*"
+    "ripplejs/ripple": "0.2.0"
   },
   "scripts": [
     "index.js"

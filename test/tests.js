@@ -1,70 +1,82 @@
 var assert = require('assert');
-var model = require('model');
+var ripple = require('ripple');
 var computed = require('computed');
 
 describe('computed', function(){
-  var Model, state;
+  var View, state;
 
   beforeEach(function () {
-    Model = model().use(computed);
+    View = ripple('<div></div>').use(computed);
   });
 
   it('should be able to do computed properties', function(){
-    Model.computed('three', ['one', 'two'], function(){
+    View.computed('three', ['one', 'two'], function(){
       return this.get('one') + this.get('two')
     });
-    state = new Model({
-      one: 1,
-      two: 2
+    view = new View({
+      data: {
+        one: 1,
+        two: 2
+      }
     });
-    assert(state.get('three') === 3);
+    assert(view.get('three') === 3);
   })
 
   it('should pass the values through to the callback', function(){
-    Model.computed('three', ['one', 'two'], function(one, two){
+    View.computed('three', ['one', 'two'], function(one, two){
       return one + two;
     });
-    state = new Model({
-      one: 1,
-      two: 2
+    view = new View({
+      data: {
+        one: 1,
+        two: 2
+      }
     });
-    state.set('two', 3);
-    assert(state.get('three') === 4);
+    view.set('two', 3);
+    assert(view.get('three') === 4);
   })
 
   it('should emit change events for computed properties', function(done){
-    Model.computed('three', ['one', 'two'], function(){
+    View.computed('three', ['one', 'two'], function(){
       return this.get('one') + this.get('two')
     });
-    state = new Model({
-      one: 1,
-      two: 2
+    view = new View({
+      data: {
+        one: 1,
+        two: 2
+      }
     });
-    state.change('three', function(change){
+    view.watch('three', function(change){
       assert(change === 4);
       done();
     });
-    state.set('one', 2);
+    view.set('one', 2);
   })
 
   it('should be able to do computed properties without explicit deps', function(done){
-    Model.computed('three', function(){
+    View.computed('three', function(){
       return this.get('one') + this.get('two')
     });
-    state = new Model({
-      one: 1,
-      two: 2
+    view = new View({
+      data: {
+        one: 1,
+        two: 2
+      }
     });
-    state.change('three', function(change){
+    view.watch('three', function(change){
       assert(change === 4);
       done();
     });
-    state.set('one', 2);
+    view.set('one', 2);
   })
 
   it('should get properties as normal', function(){
-    state = new Model({ 'foo' : 'bar' });
-    assert( state.get('foo') === 'bar' );
+    view = new View({
+      data: {
+        'foo' : 'bar'
+      }
+    });
+    assert( view.get('foo') === 'bar' );
   })
 
 });
