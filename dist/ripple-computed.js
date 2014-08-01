@@ -251,8 +251,7 @@ module.exports = function(View) {
    */
   View.computed = function(name, dependencies, fn) {
     var args = arguments;
-    View.created(function(){
-      var self = this;
+    View.on('created', function(self){
       if(args.length === 2) {
         fn = args[1];
         dependencies = track();
