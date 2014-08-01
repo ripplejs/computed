@@ -14,10 +14,8 @@ describe('computed', function(){
       return this.get('one') + this.get('two')
     });
     view = new View({
-      data: {
-        one: 1,
-        two: 2
-      }
+      one: 1,
+      two: 2
     });
     assert(view.get('three') === 3);
   })
@@ -27,10 +25,8 @@ describe('computed', function(){
       return one + two;
     });
     view = new View({
-      data: {
-        one: 1,
-        two: 2
-      }
+      one: 1,
+      two: 2
     });
     view.set('two', 3);
     assert(view.get('three') === 4);
@@ -41,10 +37,8 @@ describe('computed', function(){
       return this.get('one') + this.get('two')
     });
     view = new View({
-      data: {
-        one: 1,
-        two: 2
-      }
+      one: 1,
+      two: 2
     });
     view.watch('three', function(change){
       assert(change === 4);
@@ -58,10 +52,8 @@ describe('computed', function(){
       return this.get('one') + this.get('two')
     });
     view = new View({
-      data: {
-        one: 1,
-        two: 2
-      }
+      one: 1,
+      two: 2
     });
     view.watch('three', function(change){
       assert(change === 4);
@@ -72,9 +64,7 @@ describe('computed', function(){
 
   it('should get properties as normal', function(){
     view = new View({
-      data: {
-        'foo' : 'bar'
-      }
+      'foo' : 'bar'
     });
     assert( view.get('foo') === 'bar' );
   })

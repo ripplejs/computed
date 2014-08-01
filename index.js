@@ -47,9 +47,8 @@ module.exports = function(View) {
    * @return {View}
    */
   View.computed = function(name, dependencies, fn) {
-    var args = arguments;
-    View.created(function(){
-      var self = this;
+    var args = Array.prototype.slice.call(arguments);
+    View.on('created', function(self){
       if(args.length === 2) {
         fn = args[1];
         dependencies = track();

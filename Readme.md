@@ -1,13 +1,14 @@
-
 # computed
 
-  Plugin for model to enable computed properties
+[![Build Status](https://travis-ci.org/ripplejs/computed.svg?branch=master)](https://travis-ci.org/ripplejs/computed)
+
+Plugin for model to enable computed properties
 
 ## Installation
 
-  Install with [component(1)](http://component.io):
+Install with [component(1)](http://component.io):
 
-    $ component install ripplejs/computed
+  $ component install ripplejs/computed
 
 ## API
 

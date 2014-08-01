@@ -2,7 +2,7 @@
   "name": "computed",
   "repo": "",
   "description": "Plugin for model to enable computed properties",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [],
   "license": "MIT",
   "dependencies": {
@@ -10,7 +10,7 @@
   },
   "development": {
     "component/assert": "*",
-    "ripplejs/ripple": "0.2.0"
+    "ripplejs/ripple": "0.5.3"
   },
   "scripts": [
     "index.js"
