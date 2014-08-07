@@ -15,29 +15,18 @@
 var computed = require('computed');
 var ripple = require('ripple');
 
-var View = ripple('<div></div>');
-View.use(computed);
+var View = ripple('<div></div>')
+  .use(computed());
 ```
 
 You create computed properties using static methods. You
 can declare the dependencies explicitly:
 
 ```js
-View.computed('fullname', ['firstname', 'lastname'], function(){
-  return this.get('firstname') + ' ' + this.get('lastname');
+View.computed('fullname', ['firstname', 'lastname'], function(first, last){
+  return first + last;
 });
 ```
-
-Or let them be inferred from the `.get` calls:
-
-```js
-View.computed('fullname', function(){
-  return this.get('firstname') + ' ' + this.get('lastname');
-});
-```
-
-If there are conditionals within the computed property you'll
-need to explicitly declare dependencies.
 
 ## License
 
